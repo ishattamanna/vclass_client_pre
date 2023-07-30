@@ -38,7 +38,9 @@ const SenderChatBubble = ({ message }) => {
           {fileName.length > 10 ? fileName.slice(0, 10) : fileName}
         </a>
       )}
-      <div className="chat-footer opacity-50">Seen at 12:46</div>
+      <div className="chat-footer opacity-50">
+        
+      </div>
     </div>
   );
 };
