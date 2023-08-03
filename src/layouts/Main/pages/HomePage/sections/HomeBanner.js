@@ -1,5 +1,5 @@
 import React from "react";
-import bannerImg from "../../../../../assets/home_images/virtual-classroom-distance-learning-cartoon_82574-2928-removebg-preview.png";
+import bannerImg from "../../../../../assets/home_images/19245711_6101073-scaled.jpg";
 import HomeStat from "./HomeStat";
 
 const HomeBanner = () => {
@@ -8,15 +8,10 @@ const HomeBanner = () => {
       <figure className="lg:w-2-[40%]">
         <img src={bannerImg} alt="bannerImg" />
       </figure>
-      <div className="card-body lg:w-[60%] text-start">
-        <h2 className="card-title">New album is released!</h2>
+      <div className="card-body lg:w-[60%] text-start font-semibold">
+        <h2 className="card-title">Join VClass Today!</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
-          fugit blanditiis sequi at consectetur eos molestias reiciendis tempora
-          facere expedita ad qui suscipit beatae dignissimos eveniet dicta
-          asperiores aspernatur quae animi reprehenderit eius aut quo, incidunt
-          magnam! Culpa alias nam soluta repellat illum, maiores commodi aliquam
-          totam recusandae cumque quos?
+        VClass is an all-in-one virtual classroom solution that brings the best of traditional education into the digital era. Our platform combines state-of-the-art features with user-friendly design to create a seamless and immersive learning experience for students and educators alike.
         </p>
         <div>
           <HomeStat />

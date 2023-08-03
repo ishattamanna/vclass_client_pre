@@ -9,9 +9,13 @@ const TextField = ({
   name,
   onChange,
   onKeyDown,
+  defaultValue,
+  onBlur
 }) => {
   return (
     <input
+      onBlur={onBlur}
+      defaultValue={defaultValue}
       onChange={onChange}
       onKeyDown={onKeyDown}
       type={type}

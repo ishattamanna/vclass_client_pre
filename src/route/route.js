@@ -22,6 +22,8 @@ import AnnouncementDetails from "../layouts/Dashboard/pages/ClassDetails/Announc
 import SubmissionDetails from "../layouts/Dashboard/pages/ClassDetails/SubmissionDetails/SubmissionDetails";
 import JoinClass from "../layouts/Dashboard/pages/JoinClass/JoinClass";
 import PageNotFound from "../404/404";
+import ContactUs from "../layouts/Main/pages/ContactUs/ContactUs";
+import Doc from "../layouts/Main/pages/Doc/Doc";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: '/contact-us',
+        element: <ContactUs></ContactUs>
+      },
+      {
+        path: '/doc',
+        element: <Doc></Doc>
       },
       {
         path: "/signin",

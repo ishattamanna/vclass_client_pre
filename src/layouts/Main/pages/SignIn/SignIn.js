@@ -11,9 +11,11 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import useSendUserToDb from "../../../../hooks/useSendUserToDb";
 
 const SignIn = () => {
-  const { signInWithGoogle, logIn } = useContext(AuthContext);
+  const { signInWithGoogle, logIn, forgetPassword } = useContext(AuthContext);
   const [recordingUserInfo, setRecordingUserInfo] = useState(null);
   const { dbConfirmation } = useSendUserToDb(recordingUserInfo);
+  const [passResetingEmail, setPassResetingEmail] = useState('')
+  const [displayError, setDisplayError] = useState('')
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const SignIn = () => {
   }, [dbConfirmation, navigator]);
 
   const handleGoogleSignIn = () => {
+    setDisplayError('')
     signInWithGoogle()
       .then((data) => {
         const user = data.user;
@@ -43,9 +46,24 @@ const SignIn = () => {
       });
   };
 
+
+  const resetPassword = () => {
+    setDisplayError('')
+    if (passResetingEmail) {
+      forgetPassword(passResetingEmail)
+        .then(() => { })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+    else {
+      setDisplayError('Please provide your email to reset the password')
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    setDisplayError('')
     const form = event.target;
 
     const email = form.email.value;
@@ -76,17 +94,22 @@ const SignIn = () => {
         <div className="card shadow-2xl bg-base-100 lg:w-[50%]">
           <div className="flex flex-col lg:flex-row items-center lg:items-start">
             <div className="px-5 lg:pt-16">
-              <IconButton
-                onClick={handleGoogleSignIn}
-                className={"my-5 w-[250px]"}
-              >
-                <img className="w-6 h-6" src={googleIcon} alt="" />
-                Sign In with Google
-              </IconButton>
-               <IconOutlineButton className={"my-5 w-[250px]"}>
-                <img className="w-6 h-6" src={facebookIcon} alt="" />
-                Sign In with Facebook
-              </IconOutlineButton> 
+              <div>
+                <IconButton
+                  onClick={handleGoogleSignIn}
+                  className={"my-5 w-[250px]"}
+                >
+                  <img className="w-6 h-6" src={googleIcon} alt="" />
+                  Sign In with Google
+                </IconButton>
+                <IconOutlineButton className={"my-5 w-[250px]"}>
+                  <img className="w-6 h-6" src={facebookIcon} alt="" />
+                  Sign In with Facebook
+                </IconOutlineButton>
+              </div>
+              {
+                displayError && <p className="text-start font-bold text-red-600">{displayError}</p>
+              }
             </div>
             <form onSubmit={handleSubmit}>
               <div className="card-body w-full">
@@ -95,6 +118,7 @@ const SignIn = () => {
                     <span className="label-text font-bold">Email</span>
                   </label>
                   <TextField
+                    onBlur={(event) => setPassResetingEmail(event.target.value)}
                     required={true}
                     type={"email"}
                     name={"email"}
@@ -111,7 +135,7 @@ const SignIn = () => {
                     required={true}
                     placeholder={"Password"}
                   />
-                  <button className="btn btn-link normal-case text-start">
+                  <button onClick={resetPassword} type="button" className="btn btn-link normal-case text-start">
                     Forgot Password ?
                   </button>
                 </div>

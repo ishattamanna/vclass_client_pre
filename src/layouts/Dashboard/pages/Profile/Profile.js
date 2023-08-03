@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import useGetDBUser from "../../../../hooks/useGetDBUser";
 import EditIcon from "../../../../tools/icons/EditIcon";
@@ -12,12 +12,41 @@ import FriendsIcon from "../../../../tools/icons/FriendsIcon";
 import useGetFriends from "../../../../hooks/useGetFriends";
 import LandMarkIcon from "../../../../tools/icons/LandMarkIcon";
 import useGetClasses from "../../../../hooks/useGetClasses";
+import useUploadImage from "../../../../hooks/useUploadImage";
+import EditProfileModal from "./sections/EditProfileModal";
 
 const Profile = () => {
   const { authUser } = useContext(AuthContext);
-  const { dbUser } = useGetDBUser(authUser?.email);
+  const { dbUser, dbUserRefetch } = useGetDBUser(authUser?.email);
   const { friends } = useGetFriends();
   const { classes } = useGetClasses(authUser?.email);
+  const profileImageRef = useRef()
+  const [changingPP, setChangingPP] = useState(null)
+  const editProfileRef = useRef();
+
+  const { imgUrl } = useUploadImage(changingPP)
+
+  useEffect(() => {
+    if (imgUrl) {
+      console.log(imgUrl)
+      fetch(`${process.env.REACT_APP_serverSiteLink}change-pp`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({ userEmail: dbUser?.email, profilePic: imgUrl })
+      }).then(res => res.json()).then(data => {
+        console.log(data)
+        if (data?.acknowledged) {
+          dbUserRefetch()
+        }
+      })
+    }
+  }, [imgUrl, dbUser, dbUserRefetch])
+
+  const handleChangeProfilePic = (event) => {
+    setChangingPP(event.target.files[0])
+  }
 
   return (
     <div className="lg:px-10 px-2 py-10">
@@ -26,21 +55,23 @@ const Profile = () => {
       </h1>
       <div className="relative shadow rounded-lg border pt-16 mt-20">
         <div className={`flex justify-center mx-auto`}>
-          <div className="avatar absolute -top-16">
+          <div onClick={() => profileImageRef.current.click()} className="avatar cursor-pointer absolute -top-16">
             <div className="w-24 rounded-full">
               <img src={dbUser?.profilePic} alt="" />
             </div>
           </div>
+          <input onChange={handleChangeProfilePic} ref={profileImageRef} type="file" className="hidden" />
         </div>
         <div>
+          <label ref={editProfileRef} htmlFor="editProfileModal" className="hidden"></label>
           <BasicIconButton
-            // onClick={() => setIsOpen(true)}
+            onClick={() => editProfileRef.current?.click()}
             className="absolute hidden rounded top-0 right-0 px-1.5 py-0.5 lg:flex items-center gap-2 button"
           >
             <EditIcon className={"w-4 h-4"} />
-            Profile
+            Edit Profile
           </BasicIconButton>
-          <IconCoverButton className="absolute rounded top-0 right-0 px-1.5 py-0.5 lg:hidden flex items-center gap-2 button">
+          <IconCoverButton onClick={() => editProfileRef.current?.click()} className="absolute rounded top-0 right-0 px-1.5 py-0.5 lg:hidden flex items-center gap-2 button">
             <EditIcon className={"w-4 h-4"} />
           </IconCoverButton>
           <div className="text-start">
@@ -66,8 +97,8 @@ const Profile = () => {
               <h3 className="flex items-center py-2 px-5">
                 <PhoneIcon className="w-6 h-6 mr-3 mt-0.5" />
                 <span className="whitespace-nowrap">Contact No :</span>{" "}
-                {dbUser?.phone ? (
-                  dbUser.phone
+                {dbUser?.contactNo ? (
+                  dbUser.contactNo
                 ) : (
                   <span className="text-error ml-2">Contact not updated</span>
                 )}
@@ -90,6 +121,7 @@ const Profile = () => {
           </h3>
         </div>
       </div>
+      <EditProfileModal />
     </div>
   );
 };

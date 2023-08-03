@@ -75,7 +75,7 @@ const Header = ({ navItems }) => {
                 <BasicIconButton
                   onClick={() => {
                     logOut()
-                      .then(() => {})
+                      .then(() => { })
                       .catch((err) => console.error(err));
                   }}
                   className={"justify-center"}
@@ -87,7 +87,7 @@ const Header = ({ navItems }) => {
             </ul>
           </div>
         ) : (
-          <Link to={"/signup"}>
+          <Link className="hidden lg:inline" to={"/signup"}>
             <OutlineButton>Get Started</OutlineButton>
           </Link>
         )}
