@@ -4,7 +4,7 @@ const HomeStat = () => {
   return (
     <div className="stats shadow flex flex-col lg:flex-row w-full">
       <div className="stat">
-        <div className="stat-figure text-[steelblue]">
+        <div className="stat-figure text-[green]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -25,7 +25,7 @@ const HomeStat = () => {
       </div>
 
       <div className="stat">
-        <div className="stat-figure text-[steelblue]">
+        <div className="stat-figure text-[green]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -46,7 +46,7 @@ const HomeStat = () => {
       </div>
 
       <div className="stat">
-        <div className="stat-figure text-[steelblue]">
+        <div className="stat-figure text-[green]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

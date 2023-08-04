@@ -17,7 +17,7 @@ import LogInIcon from "../../../tools/icons/LogInIcon";
 import profileImage from "../../../../src/assets/auth/blank-profile-picture-973460_1280.webp";
 import IconCoverLabel from "../../../tools/labels/IconCoverLabel";
 import useGetDBUser from "../../../hooks/useGetDBUser";
-import logo from "../../../assets/home_images/home_page_logo.png";
+import logo from "../../../assets/home_images/home_page_logo-removebg-preview.png";
 
 const Header = ({ navItems }) => {
   const { authUser, logOut } = useContext(AuthContext);
@@ -33,7 +33,7 @@ const Header = ({ navItems }) => {
         </IconCoverLabel>
         {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
         <img
-          className="lg:h-[60px] h-[50px] mx-auto lg:mr-auto"
+          className="lg:h-[60px] h-[50px] w-40 mx-auto lg:mr-auto"
           src={logo}
           alt=""
         />
@@ -47,7 +47,7 @@ const Header = ({ navItems }) => {
             <label tabIndex={0}>
               <BasicIconButton>
                 <div class="avatar">
-                  <div class="w-10 h-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <div class="w-10 h-10 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
                     <img src={dbUser?.profilePic || profileImage} alt="" />
                   </div>
                 </div>
@@ -57,7 +57,7 @@ const Header = ({ navItems }) => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-gray-200 rounded-box w-52"
+              className="dropdown-content z-[1] menu p-2 shadow bg-green-200 rounded-box w-52"
             >
               <li className="my-1">
                 <BasicIconButton>
@@ -75,7 +75,7 @@ const Header = ({ navItems }) => {
                 <BasicIconButton
                   onClick={() => {
                     logOut()
-                      .then(() => { })
+                      .then(() => {})
                       .catch((err) => console.error(err));
                   }}
                   className={"justify-center"}

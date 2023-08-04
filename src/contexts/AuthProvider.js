@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -15,6 +16,7 @@ import app from "../configs/firebase.config";
 export const AuthContext = createContext();
 
 const googleProvider = new GoogleAuthProvider();
+const fbProvider = new FacebookAuthProvider();
 
 const auth = getAuth(app);
 
@@ -46,14 +48,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    setAuthLoader(true);
     return signOut(auth);
   };
 
   const forgetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email)
-  }
-
-
+    setAuthLoader(true);
+    return sendPasswordResetEmail(auth, email);
+  };
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {

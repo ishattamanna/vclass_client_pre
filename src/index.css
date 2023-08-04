@@ -24,9 +24,13 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-tr from-secondary via-primary to-accent rounded-full;
+    @apply bg-green-700 from-secondary via-primary to-accent rounded-full;
     -webkit-border-radius: 8px;
   }
+  /* ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-tr from-secondary via-primary to-accent rounded-full;
+    -webkit-border-radius: 8px;
+  } */
 }
 
 body {

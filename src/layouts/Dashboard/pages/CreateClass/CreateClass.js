@@ -6,11 +6,13 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import useGetClasses from "../../../../hooks/useGetClasses";
 import useGetRooms from "../../../../hooks/useGetRooms";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreateClass = () => {
   const { authUser } = useContext(AuthContext);
   const { classesRefetch } = useGetClasses();
   const { roomsRefetch } = useGetRooms();
+  const navigator = useNavigate();
 
   const handleCreateClass = (event) => {
     event.preventDefault();
@@ -63,6 +65,9 @@ const CreateClass = () => {
                 classesRefetch();
                 roomsRefetch();
                 console.log(data);
+                navigator(
+                  `/dashboard/class-details/${roomInfo?.classId}/stream`
+                );
                 toast.success("class created successfully");
               }
             });

@@ -4,10 +4,9 @@ import TextField from '../../../../../tools/inputs/TextField';
 import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useGetDBUser from '../../../../../hooks/useGetDBUser';
 
-const EditProfileModal = () => {
+const EditProfileModal = ({editingUser,dbUserRefetch,setEditingUser}) => {
 
-    const { authUser } = useContext(AuthContext)
-    const { dbUser, dbUserRefetch } = useGetDBUser(authUser?.email)
+   
     const modelToggle = useRef()
 
 
@@ -25,7 +24,7 @@ const EditProfileModal = () => {
         }
 
         console.log(updatingProfileInfo)
-        fetch(`${process.env.REACT_APP_serverSiteLink}edit-profile?email=${dbUser?.email}`, {
+        fetch(`${process.env.REACT_APP_serverSiteLink}edit-profile?email=${editingUser?.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,6 +33,7 @@ const EditProfileModal = () => {
         }).then(res => res.json()).then(data => {
             console.log(data)
             if (data?.acknowledged) {
+                setEditingUser(null)
                 dbUserRefetch()
                 form.reset()
                 modelToggle.current.click()
@@ -57,7 +57,7 @@ const EditProfileModal = () => {
                                 <span className="label-text">User Name</span>
                             </label>
                             <TextField
-                                defaultValue={dbUser?.userName}
+                                defaultValue={editingUser?.userName}
                                 type="text"
                                 name="userName"
                                 placeholder="User Name"
@@ -69,7 +69,7 @@ const EditProfileModal = () => {
                                 <span className="label-text">Address</span>
                             </label>
                             <TextField
-                                defaultValue={dbUser?.address || ''}
+                                defaultValue={editingUser?.address || ''}
                                 type="text"
                                 placeholder="Address"
                                 name={"address"}
@@ -81,7 +81,7 @@ const EditProfileModal = () => {
                                 <span className="label-text">Contact Number</span>
                             </label>
                             <TextField
-                                defaultValue={dbUser?.contactNumber || ''}
+                                defaultValue={editingUser?.contactNo || ''}
                                 type="text"
                                 placeholder="Contact Number"
                                 name={"contactNo"}

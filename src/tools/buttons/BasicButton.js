@@ -6,7 +6,7 @@ const BasicButton = ({ className, onClick, children, type, disabled }) => {
       disabled={disabled}
       onClick={onClick}
       type={type}
-      className={`bg-[steelblue] text-white font-bold px-5 py-2 rounded-lg ${className}`}
+      className={`bg-[#179275] text-white font-bold px-5 py-2 rounded-lg ${className}`}
     >
       {children}
     </button>

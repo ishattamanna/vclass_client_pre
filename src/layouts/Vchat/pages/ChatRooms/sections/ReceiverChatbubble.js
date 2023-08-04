@@ -36,14 +36,14 @@ const ReceiverChatbubble = ({ message }) => {
         <a
           href={fileLink}
           target="_blank"
-          className="btn btn-primary"
+          className="btn bg-[#179275] text-white"
           rel="noreferrer"
         >
           <img className="w-10 h-10" src={fileIcon} alt="" />
           {fileName.length > 10 ? fileName.slice(0, 10) : fileName}
         </a>
       )}
-      <div className="chat-footer opacity-50">Delivered</div>
+      {/* <div className="chat-footer opacity-50">Delivered</div> */}
     </div>
   );
 };

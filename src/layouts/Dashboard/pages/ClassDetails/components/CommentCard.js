@@ -11,7 +11,7 @@ const CommentCard = ({ comment }) => {
     <div
       className={`rounded-lg flex my-2 shadow-lg p-2 ${
         authUser?.email === author
-          ? "ml-auto flex-row-reverse border-r-2 border-blue-500"
+          ? "ml-auto flex-row-reverse border-r-2 border-green-500"
           : "mr-auto flex-row border-l-2 border-green-400"
       }`}
     >

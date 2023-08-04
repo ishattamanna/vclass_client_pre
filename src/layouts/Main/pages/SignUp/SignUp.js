@@ -14,6 +14,7 @@ const SignUp = () => {
   const { imgUrl } = useUploadImage(imgFile);
   const imgInputRef = useRef();
   const [recordingUserInfo, setRecordingUserInfo] = useState(null);
+  const [displayError, setDisplayError] = useState("");
 
   useEffect(() => {
     if (imgUrl) {
@@ -35,7 +36,7 @@ const SignUp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    setDisplayError("");
     const form = event.target;
 
     const userName = form.userName.value;
@@ -50,6 +51,14 @@ const SignUp = () => {
       cPassword,
     };
 
+    if (password?.length < 8) {
+      return setDisplayError("Password must contain at least 8 characters");
+    }
+
+    if (password !== cPassword) {
+      return setDisplayError("Password didn't matched");
+    }
+
     createAccount(email, password)
       .then((data) => {
         const user = data.user;
@@ -58,6 +67,7 @@ const SignUp = () => {
       })
       .catch((err) => {
         console.error(err);
+        setDisplayError(err?.message.split("Firebase: Error ")[1]);
       });
   };
 
@@ -104,7 +114,7 @@ const SignUp = () => {
               onClick={() => imgInputRef.current.click()}
               className="avatar ml-5 cursor-pointer"
             >
-              <div className="lg:w-52 w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <div className="lg:w-52 w-28 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
                 <img src={imgUrl || profileImage} alt="" />
               </div>
             </div>
@@ -159,6 +169,11 @@ const SignUp = () => {
               </div>
             </div>
           </form>
+          {displayError && (
+            <p className="text-start font-bold text-red-600 mx-auto">
+              {displayError}
+            </p>
+          )}
           <Link to={"/signin"} className="btn btn-link normal-case">
             Already have an account ?
           </Link>

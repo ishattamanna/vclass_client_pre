@@ -33,14 +33,19 @@ const SenderChatBubble = ({ message }) => {
           {messageContent}
         </BasicOutlineButton>
       ) : (
-        <a href={fileLink} target="_blank" className="btn" rel="noreferrer">
+        <a
+          href={fileLink}
+          target="_blank"
+          className="btn btn-outline border-2 border-solid border-[green] bg-green-200 font-bold"
+          rel="noreferrer"
+        >
           <img className="w-10 h-10" src={fileIcon} alt="" />
           {fileName.length > 10 ? fileName.slice(0, 10) : fileName}
         </a>
       )}
-      <div className="chat-footer opacity-50">
+      {/* <div className="chat-footer opacity-50">
         
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -23,7 +23,7 @@ const Profile = () => {
   const profileImageRef = useRef()
   const [changingPP, setChangingPP] = useState(null)
   const editProfileRef = useRef();
-
+ const [editingUser,setEditingUser] = useState(null)
   const { imgUrl } = useUploadImage(changingPP)
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Profile = () => {
           <input onChange={handleChangeProfilePic} ref={profileImageRef} type="file" className="hidden" />
         </div>
         <div>
-          <label ref={editProfileRef} htmlFor="editProfileModal" className="hidden"></label>
+          <label onClick={()=> setEditingUser(dbUser)} ref={editProfileRef} htmlFor="editProfileModal" className="hidden"></label>
           <BasicIconButton
             onClick={() => editProfileRef.current?.click()}
             className="absolute hidden rounded top-0 right-0 px-1.5 py-0.5 lg:flex items-center gap-2 button"
@@ -121,7 +121,10 @@ const Profile = () => {
           </h3>
         </div>
       </div>
-      <EditProfileModal />
+      {
+        editingUser && <EditProfileModal setEditingUser={setEditingUser} dbUserRefetch={dbUserRefetch} editingUser={editingUser} />
+      }
+      
     </div>
   );
 };

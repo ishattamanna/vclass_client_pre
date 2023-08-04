@@ -11,6 +11,7 @@ import useGetClassMembers from "../../../../hooks/useGetClassMembers";
 import useGetClass from "../../../../hooks/useGetClass";
 import useGetClasses from "../../../../hooks/useGetClasses";
 import useGetRooms from "../../../../hooks/useGetRooms";
+import { useNavigate } from "react-router-dom";
 
 const JoinClass = () => {
   const { authUser, logOut } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const JoinClass = () => {
   const { classesRefetch } = useGetClasses();
   const { roomsRefetch } = useGetRooms();
   const [selectedUsers, setSelectedUsers] = useState([authUser?.email]);
+  const navigator = useNavigate();
 
   const handleAddMembers = () => {
     const membersInfo = {
@@ -61,6 +63,9 @@ const JoinClass = () => {
                 setSelectedUsers([]);
                 roomsRefetch();
                 setClassId("");
+                navigator(
+                  `/dashboard/class-details/${membersInfo?.classId}/stream`
+                );
                 toast.success("Successfully joined room");
               }
             });

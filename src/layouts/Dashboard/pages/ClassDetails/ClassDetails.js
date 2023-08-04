@@ -35,7 +35,7 @@ const ClassDetails = () => {
           to={`/dashboard/class-details/${id}/stream`}
           className={`tab w-[33%] ${
             pathname.split("/")[pathname.split("/").length - 1] === "stream"
-              ? "tab-active"
+              ? "bg-[green] text-white"
               : ""
           }`}
         >
@@ -46,7 +46,7 @@ const ClassDetails = () => {
           className={`tab w-[33%] ${
             pathname.split("/")[pathname.split("/").length - 1] ===
             "assignments"
-              ? "tab-active"
+              ? "bg-[green] text-white"
               : ""
           }`}
         >
@@ -56,7 +56,7 @@ const ClassDetails = () => {
           to={`/dashboard/class-details/${id}/members`}
           className={`tab w-[33%] ${
             pathname.split("/")[pathname.split("/").length - 1] === "members"
-              ? "tab-active"
+              ? "bg-[green] text-white"
               : ""
           }`}
         >
@@ -91,7 +91,7 @@ const ClassDetails = () => {
         </div>
         <div className="flex items-center justify-start">
           <div className="avatar -mt-20 shadow-md lg:-mt-40 rounded-full lg:ml-10 ml-5">
-            <div className="lg:w-40 w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <div className="lg:w-40 w-24 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
               <img className="w-full" src={dbUser?.profilePic} alt="" />
             </div>
           </div>

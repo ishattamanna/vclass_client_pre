@@ -4,7 +4,7 @@ const BasicOutlineButton = ({ className, children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`border-2 border-solid bg-gray-200 font-bold border-[steelblue] px-5 py-2 rounded-lg ${className}`}
+      className={`border-2 border-solid bg-green-200 font-bold border-[green] px-5 py-2 rounded-lg ${className}`}
     >
       {children}
     </button>

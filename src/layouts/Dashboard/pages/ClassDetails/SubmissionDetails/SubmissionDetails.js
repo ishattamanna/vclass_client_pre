@@ -93,7 +93,7 @@ const SubmissionDetails = () => {
       <div className="flex flex-col lg:flex-row items-start justify-between">
         <div className="flex items-start">
           <div className="avatar">
-            <div className="lg:w-16 w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <div className="lg:w-16 w-12 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
               <img src={dbUser?.profilePic} alt="" />
             </div>
           </div>

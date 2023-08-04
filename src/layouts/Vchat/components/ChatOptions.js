@@ -61,20 +61,22 @@ const ChatOptions = ({
       <div className="tabs tabs-boxed">
         <button
           onClick={() => setRequiredRoom("all")}
-          className={`tab w-[33%] ${requiredRoom === "all" && "tab-active"}`}
+          className={`tab w-[33%] ${
+            requiredRoom === "all" && "bg-[green] text-white"
+          }`}
         >
           All
         </button>
         <button
           onClick={() => setRequiredRoom("groups")}
-          className={`tab w-[33%] ${requiredRoom === "groups" && "tab-active"}`}
+          className={`tab w-[33%] ${requiredRoom === "groups" && "bg-[green] text-white"}`}
         >
           Groups
         </button>
         <button
           onClick={() => setRequiredRoom("classes")}
           className={`tab w-[33%] ${
-            requiredRoom === "classes" && "tab-active"
+            requiredRoom === "classes" && "bg-[green] text-white"
           }`}
         >
           Classes

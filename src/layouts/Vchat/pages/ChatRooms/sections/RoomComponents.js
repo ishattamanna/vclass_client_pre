@@ -28,7 +28,7 @@ const RoomComponents = ({ room }) => {
         <div className="w-80 h-full bg-base-200 text-base-content overflow-y-scroll">
           <div className="mt-3">
             <div className="avatar">
-              <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <div className="w-24 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
                 <img
                   src={
                     room?.roomType === "group"

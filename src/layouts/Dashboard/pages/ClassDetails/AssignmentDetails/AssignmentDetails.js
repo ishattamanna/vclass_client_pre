@@ -117,13 +117,17 @@ const AssignmentDetails = () => {
       >
         <button
           onClick={() => setSelectedTab("i")}
-          className={`tab w-[50%] ${selectedTab === "i" ? "tab-active" : ""}`}
+          className={`tab w-[50%] ${
+            selectedTab === "i" ? "bg-[green] text-white" : ""
+          }`}
         >
           Instructions
         </button>
         <button
           onClick={() => setSelectedTab("s")}
-          className={`tab w-[50%] ${selectedTab === "s" ? "tab-active" : ""}`}
+          className={`tab w-[50%] ${
+            selectedTab === "s" ? "bg-[green] text-white" : ""
+          }`}
         >
           Submissions
         </button>

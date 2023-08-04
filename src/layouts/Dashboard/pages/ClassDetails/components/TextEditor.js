@@ -125,7 +125,7 @@ const TextEditor = ({ editor }) => {
     <div>
       <MenuBar editor={editor} />
       <EditorContent
-        className="text-start border-2 border-solid border-[steelblue] bg-blue-200 rounded-lg"
+        className="text-start border-2 border-solid border-[green] bg-green-200 rounded-lg"
         placeholder="Add Task description"
         editor={editor}
       />

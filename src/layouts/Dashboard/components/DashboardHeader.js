@@ -11,7 +11,7 @@ const DashboardHeader = () => {
   const navigator = useNavigate();
 
   return (
-    <div className="navbar bg-[steelblue] text-primary-content">
+    <div className="navbar bg-[#179275] text-primary-content">
       <IconOutlineCoverLabel
         className={"lg:hidden"}
         htmlFor={"dashboardDrawer"}
@@ -20,7 +20,7 @@ const DashboardHeader = () => {
       </IconOutlineCoverLabel>
       <img
         onClick={() => navigator("/")}
-        className="lg:h-[50px] h-[40px] rounded-lg lg:mx-0 mx-auto"
+        className="lg:h-[50px] h-[40px] rounded-lg lg:mx-0 mx-auto cursor-pointer"
         src={logo}
         alt=""
       />

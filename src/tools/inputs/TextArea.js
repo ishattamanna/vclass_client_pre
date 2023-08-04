@@ -12,7 +12,7 @@ const TextArea = ({
 }) => {
   return (
     <textarea
-      className={`textarea textarea-bordered bg-blue-200 border-2 font-bold border-[steelblue] ${className}`}
+      className={`textarea textarea-bordered bg-green-200 border-2 font-bold border-[green] ${className}`}
       onChange={onChange}
       onKeyDown={onKeyDown}
       type={type}

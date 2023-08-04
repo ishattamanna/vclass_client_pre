@@ -60,7 +60,7 @@ const MyClasses = () => {
         placeholder={"Search class by name or subject"}
         className={"w-full"}
       />
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-4 mt-2">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 mt-2">
         {requiredClasses?.map((cls, i) => (
           <ClassesCard
             classImages={classImages}

@@ -14,8 +14,8 @@ const SignIn = () => {
   const { signInWithGoogle, logIn, forgetPassword } = useContext(AuthContext);
   const [recordingUserInfo, setRecordingUserInfo] = useState(null);
   const { dbConfirmation } = useSendUserToDb(recordingUserInfo);
-  const [passResetingEmail, setPassResetingEmail] = useState('')
-  const [displayError, setDisplayError] = useState('')
+  const [passResetingEmail, setPassResetingEmail] = useState("");
+  const [displayError, setDisplayError] = useState("");
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const SignIn = () => {
   }, [dbConfirmation, navigator]);
 
   const handleGoogleSignIn = () => {
-    setDisplayError('')
+    setDisplayError("");
     signInWithGoogle()
       .then((data) => {
         const user = data.user;
@@ -42,28 +42,28 @@ const SignIn = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
+        setDisplayError(err?.message.split("Firebase: Error ")[1]);
       });
   };
 
-
   const resetPassword = () => {
-    setDisplayError('')
+    setDisplayError("");
     if (passResetingEmail) {
       forgetPassword(passResetingEmail)
-        .then(() => { })
-        .catch(err => {
-          console.log(err)
-        })
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+          setDisplayError(err.message);
+        });
+    } else {
+      setDisplayError("Please provide your email to reset the password");
     }
-    else {
-      setDisplayError('Please provide your email to reset the password')
-    }
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setDisplayError('')
+    setDisplayError("");
     const form = event.target;
 
     const email = form.email.value;
@@ -82,6 +82,7 @@ const SignIn = () => {
       })
       .catch((err) => {
         console.log(err);
+        setDisplayError(err?.message.split("Firebase: Error ")[1]);
       });
   };
 
@@ -107,9 +108,11 @@ const SignIn = () => {
                   Sign In with Facebook
                 </IconOutlineButton>
               </div>
-              {
-                displayError && <p className="text-start font-bold text-red-600">{displayError}</p>
-              }
+              {displayError && (
+                <p className="text-start font-bold text-red-600">
+                  {displayError}
+                </p>
+              )}
             </div>
             <form onSubmit={handleSubmit}>
               <div className="card-body w-full">
@@ -135,7 +138,11 @@ const SignIn = () => {
                     required={true}
                     placeholder={"Password"}
                   />
-                  <button onClick={resetPassword} type="button" className="btn btn-link normal-case text-start">
+                  <button
+                    onClick={resetPassword}
+                    type="button"
+                    className="btn btn-link normal-case text-start"
+                  >
                     Forgot Password ?
                   </button>
                 </div>
