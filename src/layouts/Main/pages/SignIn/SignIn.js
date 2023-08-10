@@ -103,10 +103,10 @@ const SignIn = () => {
                   <img className="w-6 h-6" src={googleIcon} alt="" />
                   Sign In with Google
                 </IconButton>
-                <IconOutlineButton className={"my-5 w-[250px]"}>
+                { /* <IconOutlineButton className={"my-5 w-[250px]"}>
                   <img className="w-6 h-6" src={facebookIcon} alt="" />
                   Sign In with Facebook
-                </IconOutlineButton>
+                </IconOutlineButton> */ }
               </div>
               {displayError && (
                 <p className="text-start font-bold text-red-600">
