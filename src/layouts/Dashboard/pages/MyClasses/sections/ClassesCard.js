@@ -10,15 +10,15 @@ const ClassesCard = ({ classImages, imgNumber, cls }) => {
   return (
     <Link
       to={`/dashboard/class-details/${_id}/stream`}
-      className="card lg:h-32 h-[40vh] bg-base-100 shadow-xl image-full cursor-pointer"
+      className="card static lg:h-32 h-[40vh] bg-base-100 shadow-xl image-full cursor-pointer"
     >
       <figure>
-        <img className="w-full" src={classImages[imgNumber]} alt="Shoes" />
+        <img className="w-full" src={classImages[imgNumber]} alt={className} />
       </figure>
-      <div className="card-body text-start">
-        <h2 className="card-title">{className}</h2>
+      <div className="card-body static text-start">
+        <h2>{className}</h2>
         <div>
-          <p>{subject}</p>
+          <p>{subject.length > 10 ? subject.slice(0, 10) + ' ...' : subject}</p>
           <p>{dbUser?.userName}</p>
         </div>
       </div>

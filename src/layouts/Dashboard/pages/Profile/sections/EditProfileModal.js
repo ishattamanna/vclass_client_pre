@@ -4,9 +4,9 @@ import TextField from '../../../../../tools/inputs/TextField';
 import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useGetDBUser from '../../../../../hooks/useGetDBUser';
 
-const EditProfileModal = ({editingUser,dbUserRefetch,setEditingUser}) => {
+const EditProfileModal = ({ editingUser, dbUserRefetch, setEditingUser }) => {
 
-   
+
     const modelToggle = useRef()
 
 
@@ -50,7 +50,7 @@ const EditProfileModal = ({editingUser,dbUserRefetch,setEditingUser}) => {
                 <div className="modal-box">
                     <form
                         onSubmit={handleSubmit}
-                        className="card-body lg:w-[80%] w-[90%] border-2 border-solid border-gray-200 rounded-lg my-5 mx-auto"
+                        className="p-5 lg:w-[80%] w-full border-2 border-solid border-gray-200 rounded-lg my-5 mx-auto"
                     >
                         <div className="form-control">
                             <label className="label">
@@ -61,7 +61,8 @@ const EditProfileModal = ({editingUser,dbUserRefetch,setEditingUser}) => {
                                 type="text"
                                 name="userName"
                                 placeholder="User Name"
-                                className="input input-bordered"
+                                className="input input-bordered w-full"
+
                             />
                         </div>
                         <div className="form-control">

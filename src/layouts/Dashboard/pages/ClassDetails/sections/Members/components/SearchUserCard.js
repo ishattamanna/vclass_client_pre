@@ -29,7 +29,8 @@ const SearchUserCard = ({ user, clsId, setSelectedUsers, selectedUsers }) => {
                         <img src={user?.profilePic} alt="" />
                     </div>
                 </div>
-                <p className="ml-2 font-bold">{user?.email}</p>
+                <p className="ml-2 font-bold lg:hidden inline">{user?.email.length > 10 ? user?.email.slice(0, 10) + ' ...' : user?.email}</p>
+                <p className="ml-2 font-bold hidden lg:inline">{user?.email.length > 30 ? user?.email.slice(0, 30) + ' ...' : user?.email}</p>
             </div>
             <input
                 checked={selectedUsers?.includes(user?.email)}

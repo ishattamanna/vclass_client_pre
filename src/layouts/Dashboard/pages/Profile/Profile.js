@@ -23,7 +23,7 @@ const Profile = () => {
   const profileImageRef = useRef()
   const [changingPP, setChangingPP] = useState(null)
   const editProfileRef = useRef();
- const [editingUser,setEditingUser] = useState(null)
+  const [editingUser, setEditingUser] = useState(null)
   const { imgUrl } = useUploadImage(changingPP)
 
   useEffect(() => {
@@ -50,9 +50,6 @@ const Profile = () => {
 
   return (
     <div className="lg:px-10 px-2 py-10">
-      <h1 className="text-center w-full font-bold text-xl lg:text-3xl">
-        Welcome {dbUser?.userName} To PluggedIn
-      </h1>
       <div className="relative shadow rounded-lg border pt-16 mt-20">
         <div className={`flex justify-center mx-auto`}>
           <div onClick={() => profileImageRef.current.click()} className="avatar cursor-pointer absolute -top-16">
@@ -63,7 +60,7 @@ const Profile = () => {
           <input onChange={handleChangeProfilePic} ref={profileImageRef} type="file" className="hidden" />
         </div>
         <div>
-          <label onClick={()=> setEditingUser(dbUser)} ref={editProfileRef} htmlFor="editProfileModal" className="hidden"></label>
+          <label onClick={() => setEditingUser(dbUser)} ref={editProfileRef} htmlFor="editProfileModal" className="hidden"></label>
           <BasicIconButton
             onClick={() => editProfileRef.current?.click()}
             className="absolute hidden rounded top-0 right-0 px-1.5 py-0.5 lg:flex items-center gap-2 button"
@@ -81,7 +78,7 @@ const Profile = () => {
                 <ProfileIcon className="text-lg mr-3" />
                 Name : {dbUser?.userName}
               </h3>
-              <h3 className="flex items-center py-2 px-5 border-b-2">
+              <h3 className="flex items-center py-2 px-5 border-b-2 break-all">
                 <MailIcon className="text-lg mr-3" />
                 Email : {dbUser?.email}
               </h3>
@@ -124,7 +121,7 @@ const Profile = () => {
       {
         editingUser && <EditProfileModal setEditingUser={setEditingUser} dbUserRefetch={dbUserRefetch} editingUser={editingUser} />
       }
-      
+
     </div>
   );
 };

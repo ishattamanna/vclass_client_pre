@@ -37,10 +37,10 @@ const AssignmentCard = ({ assignment, classId, handleDeletConfirm }) => {
         <IconCoverButton>
           <DocumentIcon className={"w-6 h-6"} />
         </IconCoverButton>
-        <div className="flex items-center justify-between w-full">
+        <div className="lg:flex items-center justify-between w-full">
           <div className="ml-2 flex flex-col justify-start">
             <h3 className="card-title">{assignment?.title}</h3>
-            <p>deadline: {assignment?.deadline}</p>
+            <p className="text-start">deadline: {assignment?.deadline}</p>
           </div>
           <div className="flex items-center mr-2">
             <div className="flex place-items-center">

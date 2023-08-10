@@ -6,12 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import MessageIcon from "../../../tools/icons/MessageIcon";
 import IconOutlineCoverLabel from "../../../tools/labels/IconOutlineCoverLabel";
 import logo from "../../../assets/logo/vclass_logo-removebg-preview.png";
+import useGetRooms from "../../../hooks/useGetRooms";
 
 const DashboardHeader = () => {
   const navigator = useNavigate();
 
+  const { rooms } = useGetRooms()
+
   return (
-    <div className="navbar bg-[#179275] text-primary-content">
+    <div className="navbar bg-[#179275] text-primary-content sticky z-[100] top-0">
       <IconOutlineCoverLabel
         className={"lg:hidden"}
         htmlFor={"dashboardDrawer"}
@@ -24,7 +27,7 @@ const DashboardHeader = () => {
         src={logo}
         alt=""
       />
-      <Link to={"/vchat"} className="ml-auto">
+      <Link to={`/vchat/chat-room/${rooms?.[0]?._id}`} className="ml-auto">
         <IconOutlineCoverButton>
           <MessageIcon className={"w-6 h-6"} />
         </IconOutlineCoverButton>

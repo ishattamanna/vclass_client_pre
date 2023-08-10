@@ -24,7 +24,6 @@ const DashboardLayout = () => {
 
   return (
     <div>
-      <DashboardHeader />
       <div className="drawer lg:drawer-open">
         <input
           ref={drawerToggleRef}
@@ -34,6 +33,7 @@ const DashboardLayout = () => {
         />
         <div className="drawer-content">
           {/* Page content here */}
+          <DashboardHeader />
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
@@ -125,7 +125,7 @@ const DashboardLayout = () => {
             <button
               onClick={() => {
                 logOut()
-                  .then(() => {})
+                  .then(() => { })
                   .catch((err) => console.error(err));
               }}
               className="btn btn-neutral normal-case w-full my-2"

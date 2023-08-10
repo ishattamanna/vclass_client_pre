@@ -21,56 +21,51 @@ const ClassDetails = () => {
   const { cls } = useGetClass(id);
   const { dbUser } = useGetDBUser(cls?.classTeacher);
   return (
-    <div>
+    <div className="static">
       <div
-        className={`tabs tabs-boxed hidden  ${
-          lastPath !== "assignments" &&
+        className={`tabs static tabs-boxed hidden  ${lastPath !== "assignments" &&
           lastPath !== "stream" &&
           lastPath !== "members"
-            ? "lg:hidden"
-            : "lg:flex"
-        }`}
+          ? "lg:hidden"
+          : "lg:flex"
+          }`}
       >
         <Link
           to={`/dashboard/class-details/${id}/stream`}
-          className={`tab w-[33%] ${
-            pathname.split("/")[pathname.split("/").length - 1] === "stream"
-              ? "bg-[green] text-white"
-              : ""
-          }`}
+          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] === "stream"
+            ? "bg-[green] text-white"
+            : ""
+            }`}
         >
           Stream
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/assignments`}
-          className={`tab w-[33%] ${
-            pathname.split("/")[pathname.split("/").length - 1] ===
+          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] ===
             "assignments"
-              ? "bg-[green] text-white"
-              : ""
-          }`}
+            ? "bg-[green] text-white"
+            : ""
+            }`}
         >
           Assignments
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/members`}
-          className={`tab w-[33%] ${
-            pathname.split("/")[pathname.split("/").length - 1] === "members"
-              ? "bg-[green] text-white"
-              : ""
-          }`}
+          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] === "members"
+            ? "bg-[green] text-white"
+            : ""
+            }`}
         >
           Members
         </Link>
       </div>
       <section
-        className={`w-full h-[30vh] mb-12 lg:mb-44 ${
-          lastPath !== "assignments" &&
+        className={`w-full h-[30vh] mb-12 lg:mb-44 ${lastPath !== "assignments" &&
           lastPath !== "stream" &&
           lastPath !== "members"
-            ? "hidden"
-            : ""
-        }`}
+          ? "hidden"
+          : ""
+          }`}
       >
         <div
           className="hero lg:h-[50vh] h-[30vh]"
@@ -90,7 +85,7 @@ const ClassDetails = () => {
           </div>
         </div>
         <div className="flex items-center justify-start">
-          <div className="avatar -mt-20 shadow-md lg:-mt-40 rounded-full lg:ml-10 ml-5">
+          <div className="avatar static -mt-20 shadow-md lg:-mt-40 rounded-full lg:ml-10 ml-5">
             <div className="lg:w-40 w-24 rounded-full ring ring-success ring-offset-base-100 ring-offset-2">
               <img className="w-full" src={dbUser?.profilePic} alt="" />
             </div>
@@ -102,44 +97,40 @@ const ClassDetails = () => {
         <Outlet></Outlet>
       </div>
       <div
-        className={`btm-nav lg:hidden ${
-          lastPath !== "assignments" &&
+        className={`btm-nav lg:hidden ${lastPath !== "assignments" &&
           lastPath !== "stream" &&
           lastPath !== "members"
-            ? "hidden"
-            : ""
-        }`}
+          ? "hidden"
+          : ""
+          }`}
       >
         <Link
           to={`/dashboard/class-details/${id}/stream`}
-          className={`text-primary ${
-            pathname.split("/")[pathname.split("/").length - 1] === "stream"
-              ? "active"
-              : ""
-          }`}
+          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] === "stream"
+            ? "active"
+            : ""
+            }`}
         >
           <StreamIcon className={"w-6 h-6"} />
           Stream
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/assignments`}
-          className={`text-primary ${
-            pathname.split("/")[pathname.split("/").length - 1] ===
+          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] ===
             "assignments"
-              ? "active"
-              : ""
-          }`}
+            ? "active"
+            : ""
+            }`}
         >
           <DocumentIcon />
           Assignments
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/members`}
-          className={`text-primary ${
-            pathname.split("/")[pathname.split("/").length - 1] === "members"
-              ? "active"
-              : ""
-          }`}
+          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] === "members"
+            ? "active"
+            : ""
+            }`}
         >
           <PeopleIcon />
           Members

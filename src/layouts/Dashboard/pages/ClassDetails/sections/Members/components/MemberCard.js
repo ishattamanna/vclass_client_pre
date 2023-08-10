@@ -9,9 +9,9 @@ const MemberCard = ({ member, clsId, teacher }) => {
     const { cls } = useGetClass(clsId)
 
     return (
-        <div className={`flex items-center justify-between mt-2 ${cls?.classTeacher === member && 'hidden'}`}>
+        <div className={`flex items-center justify-between my-2 shadow-lg rounded-lg p-2 mt-2 ${cls?.classTeacher === member && 'hidden'}`}>
             <div
-                className="flex items-center w-full cursor-pointer"
+                className="flex items-center w-full"
             >
                 <div className="avatar">
                     <div className="w-10 rounded-full">

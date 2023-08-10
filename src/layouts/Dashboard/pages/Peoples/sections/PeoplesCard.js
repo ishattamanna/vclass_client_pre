@@ -163,9 +163,8 @@ const PeoplesCard = ({ user }) => {
 
   return (
     <div
-      className={`card bg-base-100 h-32 lg:h-auto lg:flex-col flex-row shadow-2xl ${
-        email === authUser?.email ? "hidden" : ""
-      }`}
+      className={`card static bg-base-100 h-32 lg:h-auto lg:flex-col flex-row shadow-2xl ${email === authUser?.email ? "hidden" : ""
+        }`}
     >
       <figure className="lg:px-10 lg:pt-10 py-1 pl-1 w-[30%] lg:w-auto">
         <img
