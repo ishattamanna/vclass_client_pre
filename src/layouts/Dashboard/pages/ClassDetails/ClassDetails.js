@@ -11,6 +11,8 @@ import DocumentIcon from "../../../../tools/icons/DocumentIcon";
 import PeopleIcon from "../../../../tools/icons/PeopleIcon";
 import useGetDBUser from "../../../../hooks/useGetDBUser";
 import useGetClass from "../../../../hooks/useGetClass";
+import RecordIcon from "../../../../tools/icons/RecordIcon";
+import MediaIcon from "../../../../tools/icons/MediaIcon";
 
 const ClassDetails = () => {
   const { id } = useParams();
@@ -21,51 +23,82 @@ const ClassDetails = () => {
   const { cls } = useGetClass(id);
   const { dbUser } = useGetDBUser(cls?.classTeacher);
   return (
-    <div className="static">
-      <div
-        className={`tabs static tabs-boxed hidden  ${lastPath !== "assignments" &&
-          lastPath !== "stream" &&
-          lastPath !== "members"
-          ? "lg:hidden"
-          : "lg:flex"
+    <div>
+      <div className="sticky top-16 z-[100]">
+        <div
+          className={`tabs tabs-boxed hidden  ${
+            lastPath !== "assignments" &&
+            lastPath !== "stream" &&
+            lastPath !== "make-recording" &&
+            lastPath !== "class-records" &&
+            lastPath !== "members"
+              ? "lg:hidden"
+              : "lg:flex"
           }`}
-      >
-        <Link
-          to={`/dashboard/class-details/${id}/stream`}
-          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] === "stream"
-            ? "bg-[green] text-white"
-            : ""
-            }`}
         >
-          Stream
-        </Link>
-        <Link
-          to={`/dashboard/class-details/${id}/assignments`}
-          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] ===
-            "assignments"
-            ? "bg-[green] text-white"
-            : ""
+          <Link
+            to={`/dashboard/class-details/${id}/stream`}
+            className={`tab w-[20%] ${
+              pathname.split("/")[pathname.split("/").length - 1] === "stream"
+                ? "bg-[green] text-white"
+                : ""
             }`}
-        >
-          Assignments
-        </Link>
-        <Link
-          to={`/dashboard/class-details/${id}/members`}
-          className={`tab static w-[33%] ${pathname.split("/")[pathname.split("/").length - 1] === "members"
-            ? "bg-[green] text-white"
-            : ""
+          >
+            Stream
+          </Link>
+          <Link
+            to={`/dashboard/class-details/${id}/assignments`}
+            className={`tab w-[20%] ${
+              pathname.split("/")[pathname.split("/").length - 1] ===
+              "assignments"
+                ? "bg-[green] text-white"
+                : ""
             }`}
-        >
-          Members
-        </Link>
+          >
+            Assignments
+          </Link>
+          <Link
+            to={`/dashboard/class-details/${id}/make-recording`}
+            className={`tab w-[20%] ${
+              pathname.split("/")[pathname.split("/").length - 1] ===
+              "make-recording"
+                ? "bg-[green] text-white"
+                : ""
+            }`}
+          >
+            Make Recording
+          </Link>
+          <Link
+            to={`/dashboard/class-details/${id}/class-records`}
+            className={`tab w-[20%] ${
+              pathname.split("/")[pathname.split("/").length - 1] ===
+              "class-records"
+                ? "bg-[green] text-white"
+                : ""
+            }`}
+          >
+            Class Records
+          </Link>
+          <Link
+            to={`/dashboard/class-details/${id}/members`}
+            className={`tab w-[20%] ${
+              pathname.split("/")[pathname.split("/").length - 1] === "members"
+                ? "bg-[green] text-white"
+                : ""
+            }`}
+          >
+            Members
+          </Link>
+        </div>
       </div>
       <section
-        className={`w-full h-[30vh] mb-12 lg:mb-44 ${lastPath !== "assignments" &&
+        className={`w-full h-[30vh] mb-12 lg:mb-44 ${
+          lastPath !== "assignments" &&
           lastPath !== "stream" &&
           lastPath !== "members"
-          ? "hidden"
-          : ""
-          }`}
+            ? "hidden"
+            : ""
+        }`}
       >
         <div
           className="hero lg:h-[50vh] h-[30vh]"
@@ -97,43 +130,73 @@ const ClassDetails = () => {
         <Outlet></Outlet>
       </div>
       <div
-        className={`btm-nav lg:hidden ${lastPath !== "assignments" &&
+        className={`btm-nav lg:hidden ${
+          lastPath !== "assignments" &&
           lastPath !== "stream" &&
+          lastPath !== "make-recording" &&
+          lastPath !== "class-records" &&
           lastPath !== "members"
-          ? "hidden"
-          : ""
-          }`}
+            ? "hidden"
+            : ""
+        }`}
       >
         <Link
           to={`/dashboard/class-details/${id}/stream`}
-          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] === "stream"
-            ? "active"
-            : ""
-            }`}
+          className={`text-success font-bold ${
+            pathname.split("/")[pathname.split("/").length - 1] === "stream"
+              ? "active"
+              : ""
+          }`}
         >
           <StreamIcon className={"w-6 h-6"} />
-          Stream
+          {/* Stream */}
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/assignments`}
-          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] ===
+          className={`text-success font-bold ${
+            pathname.split("/")[pathname.split("/").length - 1] ===
             "assignments"
-            ? "active"
-            : ""
-            }`}
+              ? "active"
+              : ""
+          }`}
         >
           <DocumentIcon />
-          Assignments
+          {/* Assignments */}
+        </Link>
+        <Link
+          to={`/dashboard/class-details/${id}/make-recording`}
+          className={`text-success hidden font-bold ${
+            pathname.split("/")[pathname.split("/").length - 1] ===
+            "make-recordings"
+              ? "active"
+              : ""
+          }`}
+        >
+          <RecordIcon />
+          {/* Make Recordings */}
+        </Link>
+        <Link
+          to={`/dashboard/class-details/${id}/class-records`}
+          className={`text-success font-bold ${
+            pathname.split("/")[pathname.split("/").length - 1] ===
+            "class-records"
+              ? "active"
+              : ""
+          }`}
+        >
+          <MediaIcon />
+          {/* Class Records */}
         </Link>
         <Link
           to={`/dashboard/class-details/${id}/members`}
-          className={`text-success font-bold ${pathname.split("/")[pathname.split("/").length - 1] === "members"
-            ? "active"
-            : ""
-            }`}
+          className={`text-success font-bold ${
+            pathname.split("/")[pathname.split("/").length - 1] === "members"
+              ? "active"
+              : ""
+          }`}
         >
           <PeopleIcon />
-          Members
+          {/* Members */}
         </Link>
       </div>
     </div>

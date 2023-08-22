@@ -109,7 +109,7 @@ const AddMemberModal = ({ clsId }) => {
         id="addMembersModal"
         className="modal-toggle"
       />
-      <div className="modal">
+      <div className="modal modal-bottom lg:modal-middle">
         <div className="modal-box text-start">
           <h3 className="card-title">Invite Students</h3>
           <div className="mt-4">

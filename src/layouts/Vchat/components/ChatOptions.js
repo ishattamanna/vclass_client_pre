@@ -28,9 +28,9 @@ const ChatOptions = ({
             <ReturnIcon className={"w-6 h-6"} />
           </IconCoverButton>
         </Link>
-        <IconCoverButton className={"mx-1"}>
+        {/* <IconCoverButton className={"mx-1"}>
           <ProfileIcon className={"w-6 h-6"} />
-        </IconCoverButton>
+        </IconCoverButton> */}
         <label
           onClick={() => {
             summaryToggle.current.click();
@@ -69,7 +69,9 @@ const ChatOptions = ({
         </button>
         <button
           onClick={() => setRequiredRoom("groups")}
-          className={`tab w-[33%] ${requiredRoom === "groups" && "bg-[green] text-white"}`}
+          className={`tab w-[33%] ${
+            requiredRoom === "groups" && "bg-[green] text-white"
+          }`}
         >
           Groups
         </button>

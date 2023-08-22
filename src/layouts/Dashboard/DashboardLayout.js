@@ -36,7 +36,7 @@ const DashboardLayout = () => {
           <DashboardHeader />
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side z-[100]">
           <label htmlFor="dashboardDrawer" className="drawer-overlay"></label>
           <div className="p-4 w-auto h-full bg-base-200 text-base-content overflow-y-scroll">
             {/* Sidebar content here */}
@@ -125,7 +125,7 @@ const DashboardLayout = () => {
             <button
               onClick={() => {
                 logOut()
-                  .then(() => { })
+                  .then(() => {})
                   .catch((err) => console.error(err));
               }}
               className="btn btn-neutral normal-case w-full my-2"

@@ -20,6 +20,8 @@ import useGetClasses from "../../../../../../hooks/useGetClasses";
 import { toast } from "react-toastify";
 import useGetAnnouncements from "../../../../../../hooks/useGetAnnouncements";
 import AnnouncementsCard from "./components/AnnouncementsCard";
+import Empty from "../../../../../../Empty/Empty";
+import Loader from "../../../../../../Loader/Loader";
 
 const Stream = () => {
   const { id } = useParams();
@@ -32,7 +34,7 @@ const Stream = () => {
   const { classesRefetch } = useGetClasses();
   const { clsRefetch } = useGetClass(id);
 
-  const { ansmnts, ansmntsRefetch } = useGetAnnouncements(id);
+  const { ansmnts, ansmntsRefetch, ansmntsLoading } = useGetAnnouncements(id);
 
   const editor = useEditor({
     extensions: [
@@ -182,9 +184,15 @@ const Stream = () => {
         )}
       </div>
       <div className="mt-5 lg:px-20">
-        {ansmnts?.map((ansmnt) => (
-          <AnnouncementsCard key={ansmnt?._id} classId={id} ansmnt={ansmnt} />
-        ))}
+        {ansmntsLoading ? (
+          <Loader />
+        ) : ansmnts?.length === 0 ? (
+          <Empty message={"Class has no announcement yet"} />
+        ) : (
+          ansmnts?.map((ansmnt) => (
+            <AnnouncementsCard key={ansmnt?._id} classId={id} ansmnt={ansmnt} />
+          ))
+        )}
       </div>
     </div>
   );

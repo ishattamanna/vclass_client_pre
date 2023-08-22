@@ -29,6 +29,11 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const signInWithFb = () => {
+    setAuthLoader(true);
+    return signInWithPopup(auth, fbProvider);
+  };
+
   const createAccount = (email, password) => {
     setAuthLoader(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -70,6 +75,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     authUser,
+    signInWithFb,
     signInWithGoogle,
     createAccount,
     logIn,

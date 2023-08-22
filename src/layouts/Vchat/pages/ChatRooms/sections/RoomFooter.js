@@ -5,7 +5,6 @@ import TextField from "../../../../../tools/inputs/TextField";
 import AttachIcon from "../../../../../tools/icons/AttachIcon";
 import SentiEmojiIcon from "../../../../../tools/icons/SentiEmojiIcon";
 import PlusIcon from "../../../../../tools/icons/PlusIcon";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import DropboxChooser from "react-dropbox-chooser";
 // h-max
 
@@ -15,6 +14,7 @@ const RoomFooter = ({
   msgContent,
   setFileContent,
   fileContent,
+  handleSendLike,
 }) => {
   const [typing, setTyping] = useState(false);
 
@@ -44,8 +44,9 @@ const RoomFooter = ({
             </button>
           ) : (
             <div className="flex">
-              <label>
+              <label htmlFor="emojiModal" className="">
                 <SentiEmojiIcon className={"cursor-pointer w-6 h-6 mx-2"} />
+                {/* emoji */}
               </label>
               <DropboxChooser
                 appKey={`${process.env.REACT_APP_dropbox_secret}`}
@@ -77,7 +78,7 @@ const RoomFooter = ({
               <SendIcon className={"cursor-pointer w-6 h-6 mx-2"} />
             </button>
           ) : (
-            <button>
+            <button onClick={handleSendLike}>
               <LikeIcon className={"cursor-pointer w-6 h-6 mx-2"} />
             </button>
           )}

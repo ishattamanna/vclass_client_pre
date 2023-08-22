@@ -11,7 +11,8 @@ import { AuthContext } from "../../../../contexts/AuthProvider";
 import useSendUserToDb from "../../../../hooks/useSendUserToDb";
 
 const SignIn = () => {
-  const { signInWithGoogle, logIn, forgetPassword } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithFb, logIn, forgetPassword } =
+    useContext(AuthContext);
   const [recordingUserInfo, setRecordingUserInfo] = useState(null);
   const { dbConfirmation } = useSendUserToDb(recordingUserInfo);
   const [passResetingEmail, setPassResetingEmail] = useState("");
@@ -32,6 +33,24 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     setDisplayError("");
     signInWithGoogle()
+      .then((data) => {
+        const user = data.user;
+        console.log(user);
+        setRecordingUserInfo({
+          email: user?.email,
+          userName: user?.displayName,
+          profilePic: user?.photoURL,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        setDisplayError(err?.message.split("Firebase: Error ")[1]);
+      });
+  };
+
+  const handleFbSignIn = () => {
+    setDisplayError("");
+    signInWithFb()
       .then((data) => {
         const user = data.user;
         console.log(user);
@@ -103,10 +122,13 @@ const SignIn = () => {
                   <img className="w-6 h-6" src={googleIcon} alt="" />
                   Sign In with Google
                 </IconButton>
-                { /* <IconOutlineButton className={"my-5 w-[250px]"}>
+                {/* <IconOutlineButton
+                  onClick={handleFbSignIn}
+                  className={"my-5 w-[250px]"}
+                >
                   <img className="w-6 h-6" src={facebookIcon} alt="" />
                   Sign In with Facebook
-                </IconOutlineButton> */ }
+                </IconOutlineButton> */}
               </div>
               {displayError && (
                 <p className="text-start font-bold text-red-600">

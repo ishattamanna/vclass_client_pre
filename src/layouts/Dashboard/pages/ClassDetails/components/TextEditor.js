@@ -96,7 +96,7 @@ const MenuBar = ({ editor }) => {
       <button
         type="button"
         onClick={setLink}
-      // className={editor.isActive("link") ? "" : "opacity-50"}
+        // className={editor.isActive("link") ? "" : "opacity-50"}
       >
         <FaLink />
       </button>
@@ -120,12 +120,12 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const TextEditor = ({ editor }) => {
+const TextEditor = ({ editor, className }) => {
   return (
-    <div className="static">
+    <div className="h-auto">
       <MenuBar editor={editor} />
       <EditorContent
-        className="text-start static border-2 border-solid border-[green] bg-green-200 rounded-lg"
+        className={`text-start static border-2 border-solid border-[green] bg-green-200 rounded-lg ${className}`}
         placeholder="Add Task description"
         editor={editor}
       />

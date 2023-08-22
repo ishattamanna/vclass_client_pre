@@ -9,6 +9,7 @@ const TextArea = ({
   name,
   onChange,
   onKeyDown,
+  defaultValue,
 }) => {
   return (
     <textarea
@@ -19,6 +20,7 @@ const TextArea = ({
       placeholder={placeholder}
       value={value}
       name={name}
+      defaultValue={defaultValue}
       required={required}
     ></textarea>
   );

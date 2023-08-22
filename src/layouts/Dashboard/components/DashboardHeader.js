@@ -11,10 +11,10 @@ import useGetRooms from "../../../hooks/useGetRooms";
 const DashboardHeader = () => {
   const navigator = useNavigate();
 
-  const { rooms } = useGetRooms()
+  const { rooms } = useGetRooms();
 
   return (
-    <div className="navbar bg-[#179275] text-primary-content sticky z-[100] top-0">
+    <div className="navbar bg-[#179275] text-primary-content sticky z-[90] top-0">
       <IconOutlineCoverLabel
         className={"lg:hidden"}
         htmlFor={"dashboardDrawer"}

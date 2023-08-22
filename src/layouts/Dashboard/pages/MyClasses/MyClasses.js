@@ -12,9 +12,11 @@ import class_image_10 from "../../../../assets/classes/class_image_10.jpg";
 import useGetClasses from "../../../../hooks/useGetClasses";
 import TextField from "../../../../tools/inputs/TextField";
 import ClassesCard from "./sections/ClassesCard";
+import Empty from "../../../../Empty/Empty";
+import Loader from "../../../../Loader/Loader";
 
 const MyClasses = () => {
-  const { classes } = useGetClasses();
+  const { classes, classesLoading } = useGetClasses();
 
   const [requiredClasses, setRequiredClasses] = useState([]);
 
@@ -53,25 +55,33 @@ const MyClasses = () => {
     class_image_10,
   ];
 
-  return (
-    <div className="lg:px-10 px-2 py-2">
-      <TextField
-        onChange={handleRequiredClasses}
-        placeholder={"Search class by name or subject"}
-        className={"w-full"}
-      />
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 mt-2">
-        {requiredClasses?.map((cls, i) => (
-          <ClassesCard
-            classImages={classImages}
-            imgNumber={i}
-            key={cls?._id}
-            cls={cls}
-          />
-        ))}
+  if (classesLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <div className="lg:px-10 px-2 py-2">
+        <TextField
+          onChange={handleRequiredClasses}
+          placeholder={"Search class by name or subject"}
+          className={"w-full"}
+        />
+        {classes?.length === 0 ? (
+          <Empty message={"You have not Joined/Created any class yet"} />
+        ) : (
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-4 mt-2">
+            {requiredClasses?.map((cls, i) => (
+              <ClassesCard
+                classImages={classImages}
+                imgNumber={i}
+                key={cls?._id}
+                cls={cls}
+              />
+            ))}
+          </div>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MyClasses;
